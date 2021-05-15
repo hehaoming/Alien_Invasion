@@ -1,3 +1,5 @@
+import json
+import os
 from typing import NoReturn
 
 from setting import Settings
@@ -10,8 +12,17 @@ class GameStats():
         """初始化统计信息"""
         self.ai_settings = ai_settings
         self.reset_stats()
-        self.game_active = True
+        # 让游戏一开始处于非活动状态
+        self.game_active = False
+        # 在任何情况下都不应重置最高得分
+        if not os.path.exists('high_score.json'):
+            self.high_score = 0
+        else:
+            with open('high_score.json') as f_obj:
+                self.high_score = json.load(f_obj)
 
     def reset_stats(self) -> NoReturn:
         """初始化在游戏运行期间可能变化的统计信息"""
         self.ships_left = self.ai_settings.ship_limit
+        self.score = 0
+        self.level = 1
