@@ -33,7 +33,7 @@ def check_aliens_bottom(ai_settings: Settings,
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # 像飞船被撞到一样进行处理
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets, sb)
+            ship_hit(ai_settings, stats, screen, sb, ship, aliens, bullets)
 
 
 def ship_hit(ai_settings: Settings,
